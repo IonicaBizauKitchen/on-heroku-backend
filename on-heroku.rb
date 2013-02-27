@@ -20,7 +20,7 @@ end
 APEX_FACES         = %w[ 75.101.163.44
                          75.101.145.87
                          174.129.212.2 ]
-HEROKU_CNAME_BASES = %w[ .heroku.com.
+HEROKU_CNAME_BASES = %w[ proxy.heroku.com.
                          .herokuapp.com.
                          .herokussl.com. ]
 RX_SSL_HOSTNAME    = /^appid\d+herokucom-.*\.elb\.amazonaws\.com\.$/
