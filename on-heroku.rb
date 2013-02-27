@@ -5,15 +5,16 @@ require 'sinatra'
 require 'rack/ssl'
 require 'net/dns'
 require 'thin'
+require 'yajl'
 
 use Rack::SSL if ENV['RACK_ENV'] == 'production'
 set :show_exceptions, false
 $stdout.sync = true
 
-get "/:domain" do
+get "/:domain", provides:'json' do
   domain    = params[:domain]
   on_heroku = domain_on_heroku?(domain)
-  "#{domain} is#{' not' unless on_heroku} on heroku\n"
+  Yajl::Encoder.encode("on-heroku" => on_heroku)
 end
 
 APEX_FACES         = %w[ 75.101.163.44
